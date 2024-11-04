@@ -19,3 +19,34 @@ Parte 3: Creación de Listas de Reproducción
     3.1. Crear Lista de Reproducción Aleatoria: (2 puntos) Escribe una función llamada crear_lista_aleatoria que tome un diccionario de canciones y un número n como argumentos, y devuelva una lista aleatoria de n canciones del diccionario de canciones original. 
     
     3.2. Guardar Lista de Reproducción en Archivo: (1 punto) Escribe una función llamada guardar_lista que tome un diccionario de canciones y el nombre de un archivo como argumentos, y guarde todas las canciones del diccionario en el archivo de texto, una por línea, en el formato "título de la canción - artista". Instrucciones para la Evaluación: Utiliza un diccionario de canciones para almacenar la lista de música y realizar las operaciones requeridas. Utiliza las funciones definidas en la Parte 1 para cargar y manipular la lista de música desde un archivo de texto. Utiliza las funciones de la Parte 2 para analizar la lista de música y responder preguntas relacionadas. Utiliza las funciones de la Parte 3 para crear listas de reproducción personalizadas y guardarlas en archivos. Evaluación del Proyecto: Implementación correcta y eficiente de las funciones requeridas. Utilización adecuada de estructuras de datos como diccionarios y archivos. Claridad y legibilidad del código. Manejo adecuado de casos especiales y errores.
+
+
+listaCanciones={}
+listaCanciones=cargar_lista("playlist.txt")
+print("-------------------------------")
+agregar_cancion(listaCanciones, "Heavensent", "Apocalypta")
+imprimir(listaCanciones, "Lista Añadida")
+print("-------------------------------")
+eliminar_cancion(listaCanciones, "Heavensent")
+imprimir(listaCanciones, "Lista Eliminada")
+print("-------------------------------")
+print(contar_canciones(listaCanciones))
+print("-------------------------------")
+listQueen = buscar_por_artista(listaCanciones, "Queen")
+imprimirLista(listQueen, "Lista Queen")
+print("-------------------------------")
+listaAlfabetica=ordenar_alfabeticamente(listaCanciones)
+imprimirLista(listaAlfabetica, "Lista Alfabética")
+print("-------------------------------")
+listaAleatoria=crear_lista_aleatoria(listaCanciones, 6)
+imprimirLista(listaAleatoria, "Lista Aleatoria")
+print("-------------------------------")
+guardar_lista(listaCanciones, "playlist.txt")
+agregar_cancion(listaCanciones, "Heavensent", "Apocalypta")
+guardar_lista(listaCanciones, "playlist.txt")
+imprimir(listaCanciones, "Lista Añadida")
+print("-------------------------------")
+eliminar_cancion(listaCanciones, "Heavensent")
+guardar_lista(listaCanciones, "playlist.txt")
+imprimir(listaCanciones, "Lista Borrada")
+

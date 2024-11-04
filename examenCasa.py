@@ -28,7 +28,7 @@ def eliminar_cancion(listaAUsar, nombreCancion):
 ## 2.1
 
 def contar_canciones(listaAUsar):
-    return len(listaAUsar)
+    return int(len(listaAUsar))
 
 ## 2.2
 
@@ -55,7 +55,7 @@ def ordenar_alfabeticamente(listaAUsar):
 def crear_lista_aleatoria(listaAUsar, numeroN):
     retlist=[]
     try:
-        retlist = random.sample(list(listaAUsar.items()), numeroN)
+        retlist = random.sample(list(listaAUsar.items()), numeroN)  
     except ValueError:
         print("El numero seleccionado no puede ser negativo ni mayor del numero de canciones en la lista original.")
         print("El numero de canciones en la lista es: " + str(contar_canciones(listaAUsar)))
@@ -69,32 +69,70 @@ def guardar_lista(listaAUsar, nombreArchivo):
             fichero.write(cancion + " - " + listaAUsar[cancion] + "\n")
         fichero.close
 
-listaCanciones={}
-listaCanciones=cargar_lista("playlist.txt")
-print("-------------------------------")
-agregar_cancion(listaCanciones, "Heavensent", "Apocalypta")
-print(listaCanciones)
-print("-------------------------------")
-eliminar_cancion(listaCanciones, "Heavensent")
-print(listaCanciones)
-print("-------------------------------")
-print(contar_canciones(listaCanciones))
-print("-------------------------------")
-listQueen = buscar_por_artista(listaCanciones, "Queen")
-print(listQueen)
-print("-------------------------------")
-listaAlfabetica=ordenar_alfabeticamente(listaCanciones)
-print(listaAlfabetica)
-print("-------------------------------")
-listaAleatoria=crear_lista_aleatoria(listaCanciones, 6)
-print(listaAleatoria)
-print("-------------------------------")
-guardar_lista(listaCanciones, "playlist.txt")
-agregar_cancion(listaCanciones, "Heavensent", "Apocalypta")
-guardar_lista(listaCanciones, "playlist.txt")
-print(listaCanciones)
-print("-------------------------------")
-eliminar_cancion(listaCanciones, "Heavensent")
-guardar_lista(listaCanciones, "playlist.txt")
-print(listaCanciones)
+# Funciones Adicionales (Cosa mia)
 
+def imprimir(listaAUsar, nombreLista):
+    print(str(nombreLista))
+    print("-----------------------")
+    for cancion in listaAUsar:
+        print(cancion + " - " + listaAUsar[cancion])
+        
+def imprimirLista(listaAUsar, nombre):
+    print(str(nombre))
+    print("-----------------------")
+    for item in listaAUsar:
+        print(item)
+
+def menu():
+    print("-------------------------------")
+    print("      Menu de Examen Test      ")
+    print("-------------------------------")
+    funcionando = 1
+    while(funcionando):
+        print("-------------------------------")
+        print("Seleccione una opcion:")
+        print("1. Cargar Lista")
+        print("2. Añadir Cancion")
+        print("3. Borrar Cancion")
+        print("4. Contar Canciones")
+        print("5. Crear lista alfabética")
+        print("6. Crear lista aleatoria")
+        print("7. Guardar Lista")
+        print("0. Cerrar Programa")
+        print("-------------------------------")
+
+        opcion=int(input())
+        
+        match opcion:
+            case 1:
+                print("Introduzca el archivo a cargar:")
+                fichero=input()
+                listaCanciones=cargar_lista(fichero)
+            case 2:
+                print("Introduzca el nombre de la canción a añadir:")
+                nombreCancion=input()
+                print("Introduzca el autor:")
+                nombreAutor=input()
+                agregar_cancion(listaCanciones, nombreCancion, nombreAutor)
+            case 3:
+                print("Introduzca el nombre de la cancion a eliminar:")
+                nombreCancion=input()
+                eliminar_cancion(listaCanciones, nombreCancion)
+            case 4:
+                print("La lista tiene " + str(contar_canciones(listaCanciones)) + " canciones.")   
+            case 5:
+                listaAlfabetica=ordenar_alfabeticamente(listaCanciones)
+                imprimirLista(listaAlfabetica, "Lista Alfabética")
+            case 6:
+                print("Introduzca un número de canciones a añadir entre 1 y " + str(len(listaCanciones)) + ":")
+                numeroN = int(input())
+                listaAleatoria=crear_lista_aleatoria(listaCanciones, numeroN)
+                imprimirLista(listaAleatoria, "Lista Aleatoria")
+            case 7:
+                guardar_lista(listaCanciones, "playlist.txt")
+            case 0:
+                funcionando=0
+                continue
+
+listaCanciones = {}
+menu()
