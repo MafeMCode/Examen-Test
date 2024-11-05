@@ -67,7 +67,7 @@ def guardar_lista(listaAUsar, nombreArchivo):
     with open(nombreArchivo, "w") as fichero:
         for cancion in listaAUsar:
             fichero.write(cancion + " - " + listaAUsar[cancion] + "\n")
-        fichero.close
+            # fichero.write(f"{cancion} - {listaAUsar[cancion]}\n")                 F Strings!
 
 # Funciones Adicionales (Cosa mia)
 
