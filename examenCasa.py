@@ -28,7 +28,7 @@ def eliminar_cancion(listaAUsar, nombreCancion):
 ## 2.1
 
 def contar_canciones(listaAUsar):
-    return int(len(listaAUsar))
+    return len(listaAUsar)
 
 ## 2.2
 
