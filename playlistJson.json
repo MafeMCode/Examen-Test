@@ -1,0 +1,52 @@
+[
+    {
+        "cancion": "Stairway to Heaven",
+        "artista": "Led Zeppelin",
+        "genero": "Rock"
+    },
+    {
+        "cancion": "Bohemian Rhapsody",
+        "artista": "Queen",
+        "genero": "Rock"
+    },
+    {
+        "cancion": "Hotel California",
+        "artista": "Eagles",
+        "genero": "Rock"
+    },
+    {
+        "cancion": "Imagine",
+        "artista": "John Lennon",
+        "genero": "Rock"
+    },
+    {
+        "cancion": "Like a Rolling Stone",
+        "artista": "Bob Dylan",
+        "genero": "Rock"
+    },
+    {
+        "cancion": "Hey Jude",
+        "artista": "The Beatles",
+        "genero": "Rock/Pop"
+    },
+    {
+        "cancion": "Purple Haze",
+        "artista": "Jimi Hendrix",
+        "genero": "Rock"
+    },
+    {
+        "cancion": "Smells Like Teen Spirit",
+        "artista": "Nirvana",
+        "genero": "Grunge"
+    },
+    {
+        "cancion": "Wonderwall",
+        "artista": "Oasis",
+        "genero": "Britpop"
+    },
+    {
+        "cancion": "Yesterday",
+        "artista": "The Beatles",
+        "genero": "Pop"
+    }
+]

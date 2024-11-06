@@ -1,54 +1,84 @@
+import json
+
 #Parte 1
 
 ## 1
-
 def cargar_lista(nombreArchivo):
     retList=[]
-    with open(nombreArchivo, "r") as fichero:
-        for linea in fichero:
-            dicTemp = {}
-            nombreCancion, nombreArtista, nombreGenero = linea.strip().split(" - ")
-            dicTemp["cancion"]=nombreCancion
-            dicTemp["artista"]=nombreArtista
-            dicTemp["genero"]=nombreGenero
-            retList.append(dicTemp)
+    try:
+        with open(nombreArchivo, "r") as fichero:
+            for linea in fichero:
+                dicTemp = {}
+                Valores = linea.strip().split(" - ")
+                if len(Valores)==3:
+                    dicTemp["cancion"]=Valores.pop(0)
+                    dicTemp["artista"]=Valores.pop(0)
+                    dicTemp["genero"]=Valores.pop(0)
+                    retList.append(dicTemp)
+                else:
+                    raise Exception("El número de datos es incorrecto")
+    except(FileNotFoundError):
+        print("La ruta del fichero no ha encontrado nada")
+    except(Exception):
+        print(Exception.__annotations__)        
     return retList
 
+def cargar_json(nombreArchivo):
+    with open(nombreArchivo, "r") as fichero:
+        return json.load(fichero)
+        
 ## 2
 
-def agregar_cancion(listaAUsar, nombreCancion, nombreArtista, nombreGenero):
-    dicTemp={}
-    dicTemp["cancion"]=nombreCancion
-    dicTemp["artista"]=nombreArtista
-    dicTemp["genero"]=nombreGenero
-    listaAUsar.append(dicTemp)
+def agregar_cancion(listaCanciones, nombreCancion, nombreArtista, nombreGenero):
+    if buscar_cancion(listaCanciones, nombreCancion) == 0:
+        dicTemp={}
+        dicTemp["cancion"]=nombreCancion
+        dicTemp["artista"]=nombreArtista
+        dicTemp["genero"]=nombreGenero
+        listaCanciones.append(dicTemp)
+    else:
+        print(f"La canción {nombreCancion} ya existe en la lista.")
     
 ## 2.2
 
-def buscar_por_artista(listaAUsar, nombreArtista):
+def buscar_por_artista(listaCanciones, nombreArtista):
     retList=[]  
-    for each in listaAUsar:
+    for each in listaCanciones:
         if each["artista"] == nombreArtista:
             retList.append(each)
     return retList
 
+def buscar_cancion(listaCanciones, nombreCancion):
+    MrBoolean=False
+    for each in listaCanciones:
+        if each["cancion"] == nombreCancion:
+            MrBoolean=True
+            break
+    return MrBoolean
+
 ## 3
 
-def eliminar_cancion(listaAUsar, nombreCancion):
-    for each in listaAUsar:
+def eliminar_cancion(listaCanciones, nombreCancion):
+    for each in listaCanciones:
         if each["cancion"]==nombreCancion:
-            listaAUsar.remove(each)
+            listaCanciones.remove(each)
         
 # 4
 
-def guardar_lista(listaAUsar, nombreArchivo):
+def guardar_lista(listaCanciones, nombreArchivo):
     with open(nombreArchivo, "w") as fichero:
-        for elemento in listaAUsar:
+        for elemento in listaCanciones:
             fichero.write(elemento["cancion"] + " - " + elemento["artista"] + " - " + elemento["genero"] + "\n")
 
+def guardar_json(listaCanciones, nombreArchivo):
+    with open("playlistJson.json") as Jason:
+        json.dump(listaCanciones, Jason)
+        
 print("---------------------------------")
 
-listaTemporal = cargar_lista("playlist2.txt")
+# listaTemporal = cargar_lista("playlist2.txt")
+
+listaTemporal = cargar_json("playlistJson.json")
 
 print(listaTemporal)
 
@@ -96,16 +126,16 @@ guardar_lista(listaTemporal, "playlist2.txt")
 
 # # Funciones Adicionales (Cosa mia)
 
-# def imprimir(listaAUsar, nombreLista):
+# def imprimir(listaCanciones, nombreLista):
 #     print(str(nombreLista))
 #     print("-----------------------")
-#     for cancion in listaAUsar:
-#         print(cancion + " - " + listaAUsar[cancion])
+#     for cancion in listaCanciones:
+#         print(cancion + " - " + listaCanciones[cancion])
         
-# def imprimirLista(listaAUsar, nombre):
+# def imprimirLista(listaCanciones, nombre):
 #     print(str(nombre))
 #     print("-----------------------")
-#     for item in listaAUsar:
+#     for item in listaCanciones:
 #         print(item)
 
 # def menu():
