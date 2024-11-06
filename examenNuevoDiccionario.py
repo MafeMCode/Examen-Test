@@ -22,6 +22,15 @@ def agregar_cancion(listaAUsar, nombreCancion, nombreArtista, nombreGenero):
     dicTemp["artista"]=nombreArtista
     dicTemp["genero"]=nombreGenero
     listaAUsar.append(dicTemp)
+    
+## 2.2
+
+def buscar_por_artista(listaAUsar, nombreArtista):
+    retList=[]  
+    for each in listaAUsar:
+        if each["artista"] == nombreArtista:
+            retList.append(each)
+    return retList
 
 ## 3
 
@@ -37,18 +46,34 @@ def guardar_lista(listaAUsar, nombreArchivo):
         for elemento in listaAUsar:
             fichero.write(elemento["cancion"] + " - " + elemento["artista"] + " - " + elemento["genero"] + "\n")
 
+print("---------------------------------")
+
 listaTemporal = cargar_lista("playlist2.txt")
 
 print(listaTemporal)
 
+print("---------------------------------")
+
 for each in listaTemporal:
     print(each["cancion"] + " - " + each["artista"] + " - " + each["genero"] + "\n")
+   
+print("---------------------------------")
     
 agregar_cancion(listaTemporal, "Heavensent", "Apocalypta", "Power Metal")
 
+listaApoca=buscar_por_artista(listaTemporal, "Apocalypta")
+
+print(listaApoca)
+
+print("---------------------------------")
+
 print(listaTemporal)
 
+print("---------------------------------")
+
 print(listaTemporal[len(listaTemporal)-1])
+
+print("---------------------------------")
 
 eliminar_cancion(listaTemporal, "Heavensent")
 
